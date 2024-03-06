@@ -1,2 +1,2 @@
-# PythonExercise
-python语言联系仓库
+# Python练习
+python语言练习仓库
