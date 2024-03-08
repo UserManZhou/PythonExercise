@@ -59,9 +59,8 @@ Python创建类
 class Calculator(object):
     class_variable = "This is a class variable"
 
-    def __init__(self, class_variable):
+    def __init__(self):
         self.current = 0
-        self.class_variable = class_variable
 
     def add(self, amount):
         self.current += amount
@@ -100,6 +99,6 @@ class Calculator(object):
 '''
 使用Calculator类
 '''
-myCalculator = Calculator("Instance Variable 1")
+myCalculator = Calculator()
 myCalculator.add(2)
 print(myCalculator.getCurrent())
