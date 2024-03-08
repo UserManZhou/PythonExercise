@@ -99,6 +99,44 @@ class Calculator(object):
 '''
 使用Calculator类
 '''
+'''
 myCalculator = Calculator()
 myCalculator.add(2)
 print(myCalculator.getCurrent())
+'''
+########################################################################
+'''
+Python 的字典在其他编程语言中并不常见。至少在一开始，它们看起来并不正常。
+一些超级变量（如列表、数组等）隐式地将索引绑定到其中的每个元素。Python 的字典有键，
+它们类似于这些索引，但有些不同（我稍后会重点介绍这一点）。与这些键配对的是字典的实际值或元素。我糟糕的解释已经够了，让我们举个例子。
+'''
+'''
+myExample = {
+    'someItem': 2,
+    'otherItem': 20
+}
+print(myExample['otherItem'])
+'''
+'''
+看，这有点奇怪，不是吗？如果你试图成为一个超常的人，
+你可能已经尝试过像 print（myExample[1]）这样的东西。Python 会为此咬你。词典并不完全基于索引。
+当我向您展示如何编辑词典时，您将开始看到词典中没有特定的顺序。您可以添加一个键：值，它将出现在随机位置。
+这里需要注意的一点是，不能使用相同的键创建不同的值。Python 只会覆盖重复键的值。撇开所有警告不谈，让我们在 myExample 字典中添加更多的 key：values。
+'''
+'''
+myExample = {
+    'someItem': 2,
+    'otherItem': 20
+}
+'''
+# myExample['newItem'] = 400
+'''
+myExample = {'someItem': 2, 'otherItem': 20, 'newItem': 400}
+for a in myExample:
+    print(a, myExample[a])
+'''
+'''
+词典是无序的，这不是很疯狂吗？现在，您可能不认为它们是无序的，因为我的示例返回字母顺序。
+好吧，试着玩弄一下键名，看看它是否遵循你的字母模式。它不会。无论如何，添加 key：value 真的很容易。
+只需将密钥放在括号中，并将其设置为等于值即可。关于词典的最后一件重要事情。
+'''
