@@ -1,6 +1,4 @@
-文件夹 PATH 列表
-卷序列号为 DC65-AEE1
-D:.
+
 |   .gitignore
 |   PE.iml
 |   README.md
