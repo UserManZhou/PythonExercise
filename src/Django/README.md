@@ -69,3 +69,51 @@
     2. 把你的代码放在文档根目录 以外 的某些地方吧，比如 /home/mycode。
 
 # 6.项目生成目录结构 
+
+```
+mysite/
+    manage.py
+    mysite/
+        __init__.py
+        settings.py
+        urls.py
+        asgi.py
+        wsgi.py
+```
+
+1. 这些目录和文件的用处是：
+    - 外层的 **mysite/** 根目录只是你项目的容器， 根目录名称对 **Django** 没有影响，你可以将它重命名为任何你喜欢的名称。
+    - **manage.py**: 一个让你用各种方式管理 **Django**
+      项目的命令行工具。你可以阅读 [django-admin 和 manage.py](https://docs.djangoproject.com/zh-hans/5.0/ref/django-admin/)
+      获取所有 **manage.py**
+      的细节。
+    - 里面一层的 **mysite/** 目录包含你的项目，它是一个纯 **Python** 包。它的名字就是当你引用它内部任何东西时需要用到的 *
+      *Python** 包名。 (比如 **mysite.urls**).
+    - **mysite/__init__.py**：一个空文件，告诉 **Python** 这个目录应该被认为是一个 **Python** 包。如果你是 **Python**
+      初学者，阅读官方文档中的 [更多关于包的知识](https://docs.python.org/3/tutorial/modules.html#tut-packages)。
+    - **mysite/settings.py**：**Django**
+      项目的配置文件。如果你想知道这个文件是如何工作的，请查看 [Django 配置](https://docs.djangoproject.com/zh-hans/5.0/topics/settings/)
+      了解细节。
+    - **mysite/urls.py**：**Django** 项目的 URL
+      声明，就像你网站的“目录”。阅读 [URL调度器](https://docs.djangoproject.com/zh-hans/5.0/topics/http/urls/) 文档来获取更多关于
+      **URL** 的内容。
+    - **mysite/asgi.py**：作为你的项目的运行在 ASGI 兼容的 Web
+      服务器上的入口。阅读 [如何使用 ASGI 来部署](https://docs.djangoproject.com/zh-hans/5.0/howto/deployment/asgi/)
+      了解更多细节。
+    - **mysite/wsgi.py**：作为你的项目的运行在 WSGI
+      兼容的Web服务器上的入口。[阅读 如何使用 WSGI 进行部署 了解更多细节](https://docs.djangoproject.com/zh-hans/5.0/howto/deployment/wsgi/)。
+
+# 7.运行项目
+
+1. 让我们来确认一下你的 Django 项目是否真的创建成功了。如果你的当前目录不是外层的 mysite 目录的话，请切换到此目录，然后运行下面的命令：
+   `$ python manage.py runserver`
+2. 你应该会看到如下输出：
+   `Performing system checks... System check identified no issues (0 silenced). You have unapplied migrations; your app may not work properly until they are applied. Run 'python manage.py migrate' to apply them.
+   四月 26, 2024 - 15:50:53
+   Django version 5.0, using settings 'mysite.settings'
+   Starting development server at http://127.0.0.1:8000/
+   Quit the server with CONTROL-C.`
+3. 更换端口：`$ python manage.py runserver 8080`
+4. 更换服务ip:`$ python manage.py runserver 0.0.0.0:8000`
+5. 会自动重新加载的服务器 **runserver**:用于开发的服务器在需要的情况下会对每一次的访问请求重新载入一遍 Python
+   代码。所以你不需要为了让修改的代码生效而频繁的重新启动服务器。然而，一些动作，比如添加新文件，将不会触发自动重新加载，这时你得自己手动重启服务器。
