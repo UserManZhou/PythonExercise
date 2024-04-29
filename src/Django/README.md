@@ -117,3 +117,22 @@ mysite/
 4. 更换服务ip:`$ python manage.py runserver 0.0.0.0:8000`
 5. 会自动重新加载的服务器 **runserver**:用于开发的服务器在需要的情况下会对每一次的访问请求重新载入一遍 Python
    代码。所以你不需要为了让修改的代码生效而频繁的重新启动服务器。然而，一些动作，比如添加新文件，将不会触发自动重新加载，这时你得自己手动重启服务器。
+
+# 8.创建应用
+
+1. 请确定你现在处于 **manage.py** 所在的目录下，然后运行这行命令来创建一个应用：`$ python manage.py startapp polls`
+2. 这将创建一个名为 polls 的目录，其布局如下：
+
+```
+polls/
+    __init__.py
+    admin.py
+    apps.py
+    migrations/
+        __init__.py
+    models.py
+    tests.py
+    views.py
+```
+
+3. 这个目录结构包括了投票应用的全部内容。
