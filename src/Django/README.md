@@ -136,3 +136,60 @@ polls/
 ```
 
 3. 这个目录结构包括了投票应用的全部内容。
+
+# 9.编写第一个视图
+
+1. 让我们开始编写第一个视图吧。打开 **polls/views.py**，把下面这些 Python 代码输入进去：
+
+```
+from django.http import HttpResponse
+
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+```
+
+2. 这是 Django 中最简单的视图。如果想看见效果，我们需要将一个 URL 映射到它——这就是我们需要 URLconf 的原因了。要在 polls
+   目录中创建一个 URL 配置，请创建一个名为 **urls.py** 的文件。现在你的应用程序目录应该如下所示：
+
+```
+polls/
+    __init__.py
+    admin.py
+    apps.py
+    migrations/
+        __init__.py
+    models.py
+    tests.py
+    urls.py
+    views.py
+```
+
+3. 在 **polls/urls.py** 中，输入如下代码：
+
+```
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path("", views.index, name="index"),
+]
+```
+
+4. 下一步是要在根 **URLconf** 文件中指定我们创建的 **polls.urls** 模块。在 **mysite/urls.py** 文件的 **urlpatterns**
+   列表里插入一个 **include()**， 如下：
+
+```
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path("polls/", include("polls.urls")),
+    path("admin/", admin.site.urls),
+]
+```
+
+5. 函数 **include()** 允许引用其它 **URLconfs**。每当 **Django** 遇到 **include()** 时，它会截断与此项匹配的 URL
+   的部分，并将剩余的字符串发送到**URLconf** 以供进一步处理。我们设计 **include()** 的理念是使其可以即插即用。因为投票应用有它自己的
+   **URLconf( polls/urls.py )**，他们能够被放在 "/polls/" ， "/fun_polls/" ，"/content/polls/"，或者其他任何路径下，这个应用都能够正常工作。
