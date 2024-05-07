@@ -137,7 +137,7 @@ polls/
 
 3. 这个目录结构包括了投票应用的全部内容。
 
-# 9.编写第一个视图
+## 8.1 编写第一个视图
 
 1. 让我们开始编写第一个视图吧。打开 **polls/views.py**，把下面这些 Python 代码输入进去：
 
@@ -193,3 +193,47 @@ urlpatterns = [
 5. 函数 **include()** 允许引用其它 **URLconfs**。每当 **Django** 遇到 **include()** 时，它会截断与此项匹配的 URL
    的部分，并将剩余的字符串发送到**URLconf** 以供进一步处理。我们设计 **include()** 的理念是使其可以即插即用。因为投票应用有它自己的
    **URLconf( polls/urls.py )**，他们能够被放在 "/polls/" ， "/fun_polls/" ，"/content/polls/"，或者其他任何路径下，这个应用都能够正常工作。
+6. 你现在把 **index** 视图添加进了 URLconf。通过以下命令验证是否正常工作：
+
+```
+$ python manage.py runserver
+```
+
+7. 用你的浏览器访问 http://localhost:8000/polls/, 你应该能够看见 "Hello, world. You're at the polls index." ，这是你在
+   **index** 视图中定义的。
+
+# 9.创建应用（二）
+
+> 本教程从 教程1 结束的地方开始。我们将设置数据库，创建第一个模型，并快速介绍 Django 自动生成的后台界面。
+
+## 9.1数据库配置
+
+1. 现在，打开 **mysite/settings.py** 。这是个包含了 Django 项目设置的 Python 模块。
+2. 通常，这个配置文件使用 SQLite 作为默认数据库。如果你不熟悉数据库，或者只是想尝试下 Django，这是最简单的选择。Python 内置
+   SQLite，所以你无需安装额外东西来使用它。当你开始一个真正的项目时，你可能更倾向使用一个更具扩展性的数据库，例如
+   PostgreSQL，避免中途切换数据库这个令人头疼的问题。
+3. 如果你想使用其他数据库，你需要安装合适的
+   [database bindings](https://docs.djangoproject.com/zh-hans/5.0/topics/install/#database-installation)
+   ，然后改变设置文件中 **DATABASES 'default'** 项目中的一些键值：
+   1. 下面是一个使用 MySQL 选项文件的配置示例：
+
+```
+# settings.py
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "OPTIONS": {
+            "read_default_file": "/path/to/my.cnf",
+        },
+    }
+}
+```
+
+```
+# my.cnf
+[client]
+database = NAME
+user = USER
+password = PASSWORD
+default-character-set = utf8
+```
