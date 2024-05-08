@@ -237,3 +237,44 @@ user = USER
 password = PASSWORD
 default-character-set = utf8
 ```
+
+4. 如果你想使用其他数据库，
+   你需要安装合适的 [database bindings](https://docs.djangoproject.com/zh-hans/5.0/topics/install/#database-installation)
+   ，然后改变设置文件中 **DATABASES 'default'** 项目中的一些键值
+   - [ENGINE](https://docs.djangoproject.com/zh-hans/5.0/ref/settings/#std-setting-DATABASE-ENGINE) - 可选值有
+      - **'django.db.backends.sqlite3'，'django.db.backends.postgresql'，'django.db.backends.mysql'，或 '
+        django.db.backends.oracle'**
+        。其它 [可用后端](https://docs.djangoproject.com/zh-hans/5.0/ref/databases/#third-party-notes)。
+      - [NAME](https://docs.djangoproject.com/zh-hans/5.0/ref/settings/#std-setting-NAME) -- 数据库的名称。如果你使用
+        SQLite，数据库将是你电脑上的一个文件，在这种情况下，**NAME**
+        应该是此文件完整的绝对路径，包括文件名。默认值 **BASE_DIR / 'db.sqlite3'** 将把数据库文件储存在项目的根目录。
+5. 如果你不使用 SQLite，则必须添加一些额外设置，比如 **USER 、 PASSWORD 、 HOST** 等等。想了解更多数据库设置方面的内容，请看文档：
+   **DATABASES** 。
+6. 编辑 **mysite/settings.py**
+   文件前，先设置 [TIME_ZONE](https://docs.djangoproject.com/zh-hans/5.0/ref/settings/#std-setting-TIME_ZONE) 为你自己时区。
+
+```
+TIME_ZONE = 'Asia/Shanghai'
+```
+
+7. 此外，
+   关注一下文件头部的 [INSTALLED_APPS](https://docs.djangoproject.com/zh-hans/5.0/ref/settings/#std-setting-INSTALLED_APPS)
+   设置项。这里包括了会在你项目中启用的所有 Django
+   应用。应用能在多个项目中使用，你也可以打包并且发布应用，让别人使用它们。
+   - [django.contrib.admin](https://docs.djangoproject.com/zh-hans/5.0/ref/contrib/admin/#module-django.contrib.admin) -
+     管理员站点， 你很快就会使用它。
+   - [django.contrib.auth](https://docs.djangoproject.com/zh-hans/5.0/topics/auth/#module-django.contrib.auth) - 认证授权系统。
+   - [django.contrib.contenttypes](https://docs.djangoproject.com/zh-hans/5.0/ref/contrib/contenttypes/#module-django.contrib.contenttypes) -
+     内容类型框架。
+   - [django.contrib.sessions](https://docs.djangoproject.com/zh-hans/5.0/topics/http/sessions/#module-django.contrib.sessions) -
+     会话框架。
+   - [django.contrib.messages](https://docs.djangoproject.com/zh-hans/5.0/ref/contrib/messages/#module-django.contrib.messages) -
+     消息框架。
+   - [django.contrib.staticfiles](https://docs.djangoproject.com/zh-hans/5.0/ref/contrib/staticfiles/#module-django.contrib.staticfiles) -
+     管理静态文件的框架。
+8. 这些应用被默认启用是为了给常规项目提供方便。
+9. 默认开启的某些应用需要至少一个数据表，所以，在使用他们之前需要在数据库中创建一些表。请执行以下命令：
+
+```
+$ python manage.py migrate
+```
