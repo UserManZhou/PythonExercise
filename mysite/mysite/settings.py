@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import configparser
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -82,10 +83,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': "/path/to/my.conf"
-        },
-        'HOST': 'localhost',
-        'PORT': '3306'
+            'read_default_file': str(BASE_DIR / 'my.cnf'),
+            "init_command": "SET default_storage_engine=INNODB"
+        }
     }
 }
 

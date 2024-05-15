@@ -278,3 +278,11 @@ TIME_ZONE = 'Asia/Shanghai'
 ```
 $ python manage.py migrate
 ```
+
+10. 这个 [migrate](https://docs.djangoproject.com/zh-hans/5.0/ref/django-admin/#django-admin-migrate) 命令查看
+    [INSTALLED_APPS](https://docs.djangoproject.com/zh-hans/5.0/ref/settings/#std-setting-INSTALLED_APPS) 配置，并根据
+    **mysite/settings.py**
+    文件中的数据库配置和随应用提供的数据库迁移文件（我们将在后面介绍这些），创建任何必要的数据库表。你会看到它应用的每一个迁移都有一个消息。如果你有兴趣，运行你的数据库的命令行客户端，输入
+    **\dt** （PostgreSQL）， **SHOW TABLES**; （MariaDB，MySQL）， **.tables** （SQLite）或 **SELECT TABLE_NAME FROM USER_TABLES;
+    ** （Oracle）来显示
+    Django 创建的表。
